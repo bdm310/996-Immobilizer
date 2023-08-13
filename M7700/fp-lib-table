@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "M7700")(type "KiCad")(uri "${KIPRJMOD}/M7700.pretty")(options "")(descr ""))
+)
