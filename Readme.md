@@ -5,7 +5,7 @@ This is a repository of information about the immobilizer on these 911/Boxster/C
 
 There are a few useful bits of information needed when working with these:
 - The part number of the immobiliser is located at the beginning of the eeprom from address 0x009 to 0x00E. Checking this allows you to verify that the dump you are using is correct.
-- Radio code is 12 8 bit hex characters e.g. 40 01 4F 13 06 1E 41 5F 10 38 77 26. This is a unique ID and some type of initialization/sync info for programming the remote control part of the key. This comes on a tag with new keys and was potentially provided with the car's manual for the original keys. Sometimes this tag got taped to the underside of the hood. You need this to program any remote control. I haven't found a way to reverse engineer it out of a remote yet. See the appropriately named folder for initial efforts.
+- Key fob radio code is 12 8 bit hex characters e.g. 40 01 4F 13 06 1E 41 5F 10 38 77 26. This is a unique ID and some type of initialization/sync info for programming the remote control part of the key. This comes on a tag with new keys and was potentially provided with the car's manual for the original keys. Sometimes this tag got taped to the underside of the hood. You need this to program any remote control. I haven't found a way to reverse engineer it out of a remote yet. See the appropriately named folder for initial efforts.
 - Transponder code is a unique ID on the RFID pill in the key head. You can probably re-use these transponders with special tools. They're cheap as of 2023 though, so it's probably not worth getting tools or investing time to reverse engineering them.
 - Key learning code is 3 8 bit hex characters e.g. 4C 02 E3. This is needed to program transponders and remote controls. This code is at the end of EEPROM memory, at 0x1F7 and 0x1EE.
 - Immobilizer code is needed for programming new/used modules to different cars. This is probably somewhere in the EEPROM too but I haven't needed to find it yet.
@@ -34,5 +34,5 @@ The ods spreadsheet details what I've learned about the detailed contents of thi
 ## Firmware
 This module uses an M37710 microcontroller. Turns out that it looks just like an M5M27C101K when wired up a certain way, the M7700 folder has a PCB that does the right stuff. The binary hopefully will give up some secrets for programming key remotes without the original tags.
 
-## Radio Code
+## Key Fob Radio Code
 Every key head I've seen so far uses a Microchip product. I suspect the cipher is Keeloq but I cannot match the transmitted bitstream to any product datasheet I can find. Most notably, it's missing the seemingly ubiquitous synchronization preamble. You'll find LogicPro raw captures and a PulseView composite of a few captures in the reverse engineering folder.
